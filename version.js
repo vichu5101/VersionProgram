@@ -1,3 +1,4 @@
+// Version Information
 data=[{
     version: "3.1.3" ,
     releaseDate:"February 2, 2010",
@@ -39,7 +40,7 @@ version:"7.1.2",
     versionType:"patch"
 }
 ]
-
+// find Information by Year
 function findByReleaseYear(year){
     console.log("---------------------------------------------------------------------------")
     filteredYear=data.filter(n=>n.releaseDate.includes(year))
@@ -47,6 +48,7 @@ function findByReleaseYear(year){
     console.table(filteredYear)
     console.log("---------------------------------------------------------------------------")
 }
+// find Information by Bug
 function findByBug(str){
     console.log("---------------------------------------------------------------------------")
     bug=data.filter(n=>n.bugs.includes(str))
@@ -55,6 +57,7 @@ function findByBug(str){
     console.log(bug.length,"Bugs")
     console.log("---------------------------------------------------------------------------")
 }
+// find Information by Type
 function findByType(type){
     console.log("---------------------------------------------------------------------------")
     findType=data.filter(n=>n.versionType.includes(type))
@@ -62,6 +65,7 @@ function findByType(type){
     console.table(findType)
     console.log("---------------------------------------------------------------------------")
 }
+// find Information by Features
 function findByFeature(str){
     console.log("---------------------------------------------------------------------------")
     feature=data.filter(n=>n.features.includes(str))
@@ -69,6 +73,7 @@ function findByFeature(str){
     console.table(feature)
     console.log("---------------------------------------------------------------------------")
 }
+// find Information by Author Name
 function findByAuthor(name){
     console.log("---------------------------------------------------------------------------")
     authorName=data.filter(n=>n.author.includes(name))
@@ -76,15 +81,46 @@ function findByAuthor(name){
     console.table(authorName)
     console.log("---------------------------------------------------------------------------")
 }
+// find Information by Version
 function findByVersion(ver){
     console.log("---------------------------------------------------------------------------")
     version=data.filter(n=>n.version==ver)
     console.table(version)
     console.log("---------------------------------------------------------------------------")
 }
+// Finding which author had more Updated
+function findHighestUpdatedByAuthor(){
+    authorNames=[]
+data.forEach(element => {
+    for(i of element.author){
+        authorNames.push(i)
+    }
+});
+m=1
+authorName=0;
+mostFrequent=1
+for(i=0;i<authorNames.length;i++){
+    for(j=1;j<authorNames.length;j++){
+        if(authorNames[i]==authorNames[j]){
+            m++
+        }
+        if(mostFrequent<m){
+            mostFrequent=m
+            authorName=authorNames[i]
+        }
+    }
+    m=0
+}
+console.log("---------------------------------------------------------------------------")
+console.log(`The author ${authorName} has worked on more no of releases, the count is ${mostFrequent}`)
+console.log("---------------------------------------------------------------------------")
+}
+//---------------------------------------------------------------------------------------
 findByType("patch")
 findByBug("Stability")
 findByReleaseYear(2010)
 findByFeature("67A")
 findByAuthor("Apple")
 findByVersion("5.1.1")
+findHighestUpdatedByAuthor()
+//---------------------------------------------------------------------------------------
