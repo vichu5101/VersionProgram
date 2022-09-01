@@ -3,15 +3,15 @@ data = [{
     version: "3.1.3",
     releaseDate: new Date("02-02-2010"),
     bugID: "BUG1",
-    features: ["67A", "87Z"],
+    features: ["Enhanced accessibility", "Expandable notifications."],
     author: ["Apple", "Vivo"],
     versionType: "patch"
 },
 {
     version: "4.2.1",
-    releaseDate: new Date("22-11-2010"),
+    releaseDate: new Date("05-11-2010"),
     bugID: "BUG2",
-    features: ["67A", "76K"],
+    features: ["Enhanced accessibility.", "Multichannel audio"],
     author: ["Oppo", "Samsung"],
     versionType: "Enhancement"
 },
@@ -19,23 +19,23 @@ data = [{
     version: "5.1.1",
     releaseDate: new Date("07-05-2012"),
     bugID: "BUG3",
-    features: ["91A", "55B"],
+    features: ["Calendar provider enhancements.", "Accessibility refinements such as improved content access for screen readers"],
     author: ["Apple", "Samsung"],
     versionType: "patch"
 },
 {
     version: "6.1.6",
-    releaseDate: new Date("21-02-2014"),
+    releaseDate: new Date("01-02-2014"),
     bugID: "BUG4",
-    features: ["56A", "34A"],
+    features: ["Stability improvements", "Better camera performance"],
     author: ["Apple", "Xiomi"],
     versionType: "major"
 },
 {
     version: "7.1.2",
-    releaseDate: new Date("30-06-2014"),
+    releaseDate: new Date("09-06-2014"),
     bugID: "BUG5",
-    features: ["45G", "45J"],
+    features: ["Smoother screen rotation", "Stability improvements"],
     author: ["Xiomi"],
     versionType: "patch"
 }
@@ -69,12 +69,17 @@ function findByReleaseYear(year) {
 // Find By BugID
 function findByBug(str) {
     console.log("---------------------------------------------------------------------------")
+    console.log("Bug :")
     bugList.forEach(element => {
         if (element.bugID == str) {
             console.log(element.bug)
         }
     })
+    findBug = data.filter(n => n.bugID.includes(str))
+    console.log(`${findBug.length} versions have ${str} ID...`)
+    console.table(findBug)
     console.log("---------------------------------------------------------------------------")
+
 }
 // Find by Type
 function findByType(type) {
@@ -85,11 +90,18 @@ function findByType(type) {
     console.log("---------------------------------------------------------------------------")
 }
 // Find by Feature
-function findByFeature(str) {
+function findByFeatures(str) {
     console.log("---------------------------------------------------------------------------")
-    feature = data.filter(n => n.features.includes(str))
-    console.log(`${feature.length} versions have ${str} Feature...`)
-    console.table(feature)
+    count = 0
+    data.forEach(element => {
+        for (i of element.features) {
+            if (i.includes(str)) {
+                console.log(element)
+                count++
+            }
+        }
+    })
+    console.log(`${count} versions includes "${str}" feature...`)
     console.log("---------------------------------------------------------------------------")
 }
 // Finding which author had more Updated
@@ -120,6 +132,7 @@ function findHighestUpdatedByAuthor() {
     console.log("---------------------------------------------------------------------------")
 }
 
+
 //---------------------------------------------------------------------------------------
 // Question 1
 // How many releases were made in year
@@ -144,6 +157,6 @@ findByType("major")
 // Question 5
 // How many versions have the specific feature name
 console.log("Question 5")
-findByFeature("67A")
+findByFeatures("Stability")
 
 //---------------------------------------------------------------------------------------

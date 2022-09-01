@@ -12,15 +12,15 @@ const data: Version[] = [{
     version: "3.1.3",
     releaseDate: new Date("02-02-2010"),
     bugID: "BUG1",
-    features: ["67A", "87Z"],
+    features: ["Enhanced accessibility", "Expandable notifications."],
     author: ["Apple", "Vivo"],
     versionType: "patch"
 },
 {
     version: "4.2.1",
-    releaseDate: new Date("22-11-2010"),
+    releaseDate: new Date("05-11-2010"),
     bugID: "BUG2",
-    features: ["67A", "76K"],
+    features: ["Enhanced accessibility.", "Multichannel audio"],
     author: ["Oppo", "Samsung"],
     versionType: "Enhancement"
 },
@@ -28,23 +28,23 @@ const data: Version[] = [{
     version: "5.1.1",
     releaseDate: new Date("07-05-2012"),
     bugID: "BUG3",
-    features: ["91A", "55B"],
+    features: ["Calendar provider enhancements.", "Accessibility refinements such as improved content access for screen readers"],
     author: ["Apple", "Samsung"],
     versionType: "patch"
 },
 {
     version: "6.1.6",
-    releaseDate: new Date("21-02-2014"),
+    releaseDate: new Date("01-02-2014"),
     bugID: "BUG4",
-    features: ["56A", "34A"],
+    features: ["Stability improvements", "Better camera performance"],
     author: ["Apple", "Xiomi"],
     versionType: "major"
 },
 {
     version: "7.1.2",
-    releaseDate: new Date("30-06-2014"),
+    releaseDate: new Date("09-06-2014"),
     bugID: "BUG5",
-    features: ["45G", "45J"],
+    features: ["Smoother screen rotation", "Stability improvements"],
     author: ["Xiomi"],
     versionType: "patch"
 }
@@ -90,15 +90,22 @@ function findByType(type: string) {
     console.log("---------------------------------------------------------------------------")
     let findType = data.filter(n => n.versionType.includes(type))
     console.log(`${findType.length} versions have ${type} type...`)
-    console.table(findType)
+    console.log(findType)
     console.log("---------------------------------------------------------------------------")
 }
 // find Information by Features
-function findByFeature(str: string) {
+function findByFeatures(str: string) {
     console.log("---------------------------------------------------------------------------")
-    let feature = data.filter(n => n.features.includes(str))
-    console.log(`${feature.length} versions have ${str} Feature...`)
-    console.log(feature)
+    let count = 0
+    data.forEach(element => {
+        for (let i of element.features) {
+            if (i.includes(str)) {
+                console.log(element)
+                count++
+            }
+        }
+    })
+    console.log(`${count} versions includes "${str}" feature...`)
     console.log("---------------------------------------------------------------------------")
 }
 // Finding which author had more Updated
@@ -152,6 +159,6 @@ findByType("major")
 // Question 5
 // How many versions have the specific feature name
 console.log("Question 5")
-findByFeature("67A")
+findByFeatures("Stability")
 
 //---------------------------------------------------------------------------------------
