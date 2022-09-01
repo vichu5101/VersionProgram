@@ -52,19 +52,19 @@ const data: Version[] = [{
 // Bug List
 const bugList = [{
     bugID: "BUG1",
-    bug: "Fixes issue"
+    bug: ["Fix issue", "performance enhancements bug."]
 }, {
     bugID: "BUG2",
-    bug: "performance"
+    bug: ["Fix Bluetooth audio streaming bugs.", "Maps navigation and alarms"]
 }, {
     bugID: "BUG3",
-    bug: "Fixes battery drain bug."
+    bug: ["Fixed a bug in the People application where December was not displayed on the date selector when adding an event to a contact"]
 }, {
     bugID: "BUG4",
-    bug: "audio profile for speakerphone"
+    bug: ["audio profile for speakerphone bugs", "video playback and password failures"]
 }, {
     bugID: "BUG5",
-    bug: "Stability"
+    bug: ["file-based encryption bugs."]
 }
 ]
 // find Information by Year
