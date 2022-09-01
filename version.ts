@@ -83,6 +83,9 @@ function findByBugID(str: string) {
             console.log(element.bug)
         }
     })
+    let findBug = data.filter(n => n.bugID.includes(str))
+    console.log(`The version which have "${str}" ID...`)
+    console.log(findBug)
     console.log("---------------------------------------------------------------------------")
 }
 // find Information by Type
