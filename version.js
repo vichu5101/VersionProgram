@@ -5,7 +5,7 @@ data = [{
     bugID: "BUG1",
     features: ["Enhanced accessibility", "Expandable notifications."],
     author: ["Apple", "Vivo"],
-    versionType: "patch"
+    versionType: "Patch"
 },
 {
     version: "4.2.1",
@@ -21,7 +21,7 @@ data = [{
     bugID: "BUG3",
     features: ["Calendar provider enhancements.", "Accessibility refinements such as improved content access for screen readers"],
     author: ["Apple", "Samsung"],
-    versionType: "patch"
+    versionType: "Patch"
 },
 {
     version: "6.1.6",
@@ -29,7 +29,7 @@ data = [{
     bugID: "BUG4",
     features: ["Stability improvements", "Better camera performance"],
     author: ["Apple", "Xiomi"],
-    versionType: "major"
+    versionType: "Major"
 },
 {
     version: "7.1.2",
@@ -37,7 +37,7 @@ data = [{
     bugID: "BUG5",
     features: ["Smoother screen rotation", "Stability improvements"],
     author: ["Xiomi"],
-    versionType: "patch"
+    versionType: "Patch"
 }
 ]
 // Bug list
@@ -96,7 +96,7 @@ function findByFeatures(str) {
     data.forEach(element => {
         for (i of element.features) {
             if (i.includes(str)) {
-                console.log(element)
+                console.table([element])
                 count++
             }
         }
@@ -152,7 +152,7 @@ findHighestUpdatedByAuthor()
 // Question 4
 // How many releases were type of major
 console.log("Question 4")
-findByType("major")
+findByType("Major")
 
 // Question 5
 // How many versions have the specific feature name

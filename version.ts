@@ -5,16 +5,18 @@ interface Version {
     bugID: string[] | string,
     features: string[] | string,
     author: string[] | string,
-    versionType: string
+    versionType: VersionType
 }
-// Version informations
+// Enum for Type of the Versions
+enum VersionType { Patch, Major, Enhancement }
+// Versions Data
 const data: Version[] = [{
     version: "3.1.3",
     releaseDate: new Date("02-02-2010"),
     bugID: "BUG1",
     features: ["Enhanced accessibility", "Expandable notifications."],
     author: ["Apple", "Vivo"],
-    versionType: "patch"
+    versionType: VersionType.Patch
 },
 {
     version: "4.2.1",
@@ -22,7 +24,7 @@ const data: Version[] = [{
     bugID: "BUG2",
     features: ["Enhanced accessibility.", "Multichannel audio"],
     author: ["Oppo", "Samsung"],
-    versionType: "Enhancement"
+    versionType: VersionType.Enhancement
 },
 {
     version: "5.1.1",
@@ -30,7 +32,7 @@ const data: Version[] = [{
     bugID: "BUG3",
     features: ["Calendar provider enhancements.", "Accessibility refinements such as improved content access for screen readers"],
     author: ["Apple", "Samsung"],
-    versionType: "patch"
+    versionType: VersionType.Patch
 },
 {
     version: "6.1.6",
@@ -38,7 +40,7 @@ const data: Version[] = [{
     bugID: "BUG4",
     features: ["Stability improvements", "Better camera performance"],
     author: ["Apple", "Xiomi"],
-    versionType: "major"
+    versionType: VersionType.Major
 },
 {
     version: "7.1.2",
@@ -46,7 +48,7 @@ const data: Version[] = [{
     bugID: "BUG5",
     features: ["Smoother screen rotation", "Stability improvements"],
     author: ["Xiomi"],
-    versionType: "patch"
+    versionType: VersionType.Patch
 }
 ]
 // Bug List
@@ -68,7 +70,7 @@ const bugList = [{
 }
 ]
 // find Information by Year
-function findByReleaseYear(year: any) {
+function findByReleaseYear(year: string) {
     console.log("---------------------------------------------------------------------------")
     let filteredYear = data.filter(n => n.releaseDate.toString().includes(year))
     console.log(`${filteredYear.length} versions were released in Year ${year}`)
@@ -89,10 +91,10 @@ function findByBugID(str: string) {
     console.log("---------------------------------------------------------------------------")
 }
 // find Information by Type
-function findByType(type: string) {
+function findByType(type: VersionType) {
     console.log("---------------------------------------------------------------------------")
-    let findType = data.filter(n => n.versionType.includes(type))
-    console.log(`${findType.length} versions have ${type} type...`)
+    let findType = data.filter(n => n.versionType == type)
+    console.log(`${findType.length} versions have ${VersionType[type]} type...`)
     console.log(findType)
     console.log("---------------------------------------------------------------------------")
 }
@@ -142,7 +144,7 @@ function findHighestUpdatedByAuthor() {
 // Question 1
 // How many releases were made in year
 console.log("Question 1")
-findByReleaseYear(2010)
+findByReleaseYear("2010")
 
 // Question 2
 // In which release specific bugid is present
@@ -157,7 +159,7 @@ findHighestUpdatedByAuthor()
 // Question 4
 // How many releases were type of major
 console.log("Question 4")
-findByType("major")
+findByType(VersionType.Patch)
 
 // Question 5
 // How many versions have the specific feature name
