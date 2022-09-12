@@ -1,22 +1,27 @@
 // Creating interface for Input
-interface Version {
+interface IVersion {
     version: string,
     releaseDate: Date,
     bugID: string[] | string,
     features: string[] | string,
     author: string[] | string,
-    versionType: VersionType
+    versionType: IVersionType
 }
 // Enum for Type of the Versions
-enum VersionType { Patch, Major, Enhancement }
+enum IVersionType { Patch, Major, Enhancement }
+//interface for Bug ID
+interface IBugId {
+    bugID: string,
+    bug: string[]
+}
 // Versions Data
-const data: Version[] = [{
+const data: IVersion[] = [{
     version: "3.1.3",
     releaseDate: new Date("02-02-2010"),
     bugID: "BUG1",
     features: ["Enhanced accessibility", "Expandable notifications."],
     author: ["Apple", "Vivo"],
-    versionType: VersionType.Patch
+    versionType: IVersionType.Patch
 },
 {
     version: "4.2.1",
@@ -24,7 +29,7 @@ const data: Version[] = [{
     bugID: "BUG2",
     features: ["Enhanced accessibility.", "Multichannel audio"],
     author: ["Oppo", "Samsung"],
-    versionType: VersionType.Enhancement
+    versionType: IVersionType.Enhancement
 },
 {
     version: "5.1.1",
@@ -32,7 +37,7 @@ const data: Version[] = [{
     bugID: "BUG3",
     features: ["Calendar provider enhancements.", "Accessibility refinements such as improved content access for screen readers"],
     author: ["Apple", "Samsung"],
-    versionType: VersionType.Patch
+    versionType: IVersionType.Patch
 },
 {
     version: "6.1.6",
@@ -40,7 +45,7 @@ const data: Version[] = [{
     bugID: "BUG4",
     features: ["Stability improvements", "Better camera performance"],
     author: ["Apple", "Xiomi"],
-    versionType: VersionType.Major
+    versionType: IVersionType.Major
 },
 {
     version: "7.1.2",
@@ -48,11 +53,11 @@ const data: Version[] = [{
     bugID: "BUG5",
     features: ["Smoother screen rotation", "Stability improvements"],
     author: ["Xiomi"],
-    versionType: VersionType.Patch
+    versionType: IVersionType.Patch
 }
 ]
 // Bug List
-const bugList = [{
+const bugList: IBugId[] = [{
     bugID: "BUG1",
     bug: ["Fix issue", "performance enhancements bug."]
 }, {
@@ -91,10 +96,10 @@ function findByBugID(str: string) {
     console.log("---------------------------------------------------------------------------")
 }
 // find Information by Type
-function findByType(type: VersionType) {
+function findByType(type: IVersionType) {
     console.log("---------------------------------------------------------------------------")
     let findType = data.filter(n => n.versionType == type)
-    console.log(`${findType.length} versions have ${VersionType[type]} type...`)
+    console.log(`${findType.length} versions have ${IVersionType[type]} type...`)
     console.log(findType)
     console.log("---------------------------------------------------------------------------")
 }
@@ -159,7 +164,7 @@ findHighestUpdatedByAuthor()
 // Question 4
 // How many releases were type of major
 console.log("Question 4")
-findByType(VersionType.Patch)
+findByType(IVersionType.Patch)
 
 // Question 5
 // How many versions have the specific feature name
